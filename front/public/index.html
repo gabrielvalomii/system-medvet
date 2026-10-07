@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Entrar — Finanças</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <script type="module" src="/js/login.js"></script>
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-card" aria-labelledby="login-title">
+        <header>
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 3v18h18" />
+                <path d="m7 15 4-4 3 3 6-6" />
+              </svg>
+            </span>
+            Finanças
+          </div>
+          <h1 id="login-title">Entrar</h1>
+          <p class="muted">Acesse seu controle financeiro pessoal.</p>
+        </header>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input
+              class="input"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="username"
+              inputmode="email"
+              placeholder="voce@exemplo.com"
+              required
+              aria-describedby="email-error"
+            />
+            <p class="field-error" id="email-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="password">Senha</label>
+            <input
+              class="input"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              aria-describedby="password-error"
+            />
+            <p class="field-error" id="password-error" aria-live="polite"></p>
+          </div>
+
+          <p class="form-error" id="login-error" role="alert" aria-live="assertive"></p>
+
+          <button class="btn btn-primary btn-block" id="login-button" type="submit">Entrar</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

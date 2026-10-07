@@ -1,0 +1,16 @@
+/* Design tokens (tema escuro). Use somente estas variáveis no CSS. */
+:root {
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-2: #1f232c;
+  --border: #2a2f3a;
+  --text: #e6e8ee;
+  --text-muted: #9aa3b2;
+  --primary: #6c8cff;
+  --success: #2ecc8f;
+  --danger: #ff6b6b;
+  --warning: #f5b84b;
+  --radius: 12px;
+  --gap: 16px;
+  --font: 'Inter', system-ui, sans-serif;
+}

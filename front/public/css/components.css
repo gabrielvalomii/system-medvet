@@ -1,0 +1,465 @@
+/* ---------- Painéis ---------- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-width: 0;
+  padding: calc(var(--gap) * 1.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.panel-header .muted {
+  font-size: 0.875rem;
+}
+
+/* ---------- Seletor de mês ---------- */
+.month-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.month-picker .input {
+  width: auto;
+  min-width: 150px;
+  text-align: center;
+}
+
+/* ---------- Cards de resumo ---------- */
+.summary-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: var(--gap) calc(var(--gap) * 1.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--accent, var(--primary));
+}
+
+.summary-card.is-expense {
+  --accent: var(--danger);
+}
+
+.summary-card.is-income {
+  --accent: var(--success);
+}
+
+.summary-card.is-balance {
+  --accent: var(--primary);
+}
+
+.summary-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.summary-value {
+  min-height: 1.5em;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.summary-value.is-negative {
+  color: var(--danger);
+}
+
+.summary-value.is-positive {
+  color: var(--success);
+}
+
+/* ---------- Gráficos ---------- */
+.chart-box {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+
+.chart-total {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+}
+
+.chart-total small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.chart-total strong {
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-item {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto 64px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+}
+
+.category-item:last-child {
+  border-bottom: 0;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.category-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.category-percent {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .category-item {
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+  }
+
+  .category-percent {
+    grid-column: 2 / -1;
+    text-align: left;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---------- Estados (carregando / vazio / erro) ---------- */
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: calc(var(--gap) * 2) var(--gap);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.state.is-error {
+  color: var(--danger);
+}
+
+.state-icon {
+  color: var(--text-muted);
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ---------- Formulário de lançamentos ---------- */
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.form-actions .btn-primary {
+  flex: 1;
+}
+
+.panel.is-editing {
+  border-color: var(--primary);
+}
+
+.edit-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ---------- Tabela ---------- */
+.table-wrap {
+  position: relative; /* keeps visually-hidden headers inside the scroll box */
+  container: entries / inline-size;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table th {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.data-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.data-table tr.is-editing {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.data-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.data-table .actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.data-table .actions .btn + .btn {
+  margin-left: 6px;
+}
+
+.data-table tfoot td {
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.cell-description {
+  max-width: 280px;
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+}
+
+/* Tabela vira cartões quando o painel fica estreito */
+@container entries (max-width: 600px) {
+  .data-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .data-table,
+  .data-table tbody,
+  .data-table tfoot,
+  .data-table tr,
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .data-table tbody tr {
+    margin-bottom: 10px;
+    padding: 6px 0;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 4px);
+  }
+
+  .data-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 12px;
+    border-bottom: 0;
+    text-align: right;
+  }
+
+  .data-table td::before {
+    content: attr(data-label);
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-align: left;
+    flex-shrink: 0;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .data-table td.actions {
+    justify-content: flex-end;
+  }
+
+  .data-table td.actions::before,
+  .data-table td.is-empty::before {
+    content: none;
+  }
+
+  .data-table td.is-empty {
+    justify-content: center;
+  }
+
+  .data-table tbody tr.is-empty-row {
+    border: 0;
+  }
+
+  .cell-description {
+    max-width: none;
+  }
+
+  .data-table tfoot td:not(.num) {
+    display: none;
+  }
+}
+
+/* ---------- Toasts ---------- */
+.toast-region {
+  position: fixed;
+  right: var(--gap);
+  bottom: var(--gap);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - var(--gap) * 2));
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent, var(--primary));
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--surface-2);
+  color: var(--text);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--bg) 70%, transparent);
+  animation: toast-in 0.2s ease-out;
+}
+
+.toast.is-success {
+  --accent: var(--success);
+}
+
+.toast.is-error {
+  --accent: var(--danger);
+}
+
+.toast p {
+  flex: 1;
+}
+
+.toast .btn {
+  min-height: 28px;
+  margin: -4px -6px -4px 0;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- Diálogo de confirmação ---------- */
+.dialog {
+  width: min(420px, calc(100vw - var(--gap) * 2));
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.dialog::backdrop {
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: calc(var(--gap) * 1.5);
+}
+
+.dialog-body p {
+  color: var(--text-muted);
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.chart-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}

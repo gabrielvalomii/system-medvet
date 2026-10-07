@@ -1,0 +1,309 @@
+/* ---------- Login ---------- */
+.auth-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: var(--gap);
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      color-mix(in srgb, var(--primary) 14%, transparent),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      color-mix(in srgb, var(--success) 10%, transparent),
+      transparent 40%
+    ),
+    var(--bg);
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.25);
+  width: 100%;
+  max-width: 400px;
+  padding: calc(var(--gap) * 2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+.auth-card header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--primary);
+}
+
+.auth-card .brand {
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+/* ---------- App shell ---------- */
+body[data-auth='pending'] .app {
+  visibility: hidden;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.5);
+  height: 100vh;
+  padding: calc(var(--gap) * 1.25) var(--gap);
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.sidebar nav {
+  flex: 1;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: calc(var(--radius) - 4px);
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link svg {
+  flex-shrink: 0;
+}
+
+.nav-link:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.nav-link[aria-current='page'] {
+  background: color-mix(in srgb, var(--primary) 16%, transparent);
+  color: var(--text);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+.nav-link.logout:hover {
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  color: var(--danger);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px var(--gap);
+  padding: var(--gap) calc(var(--gap) * 1.5);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.topbar h1 {
+  flex: 1 1 auto;
+}
+
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.user-chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+}
+
+.menu-toggle,
+.sidebar-close {
+  display: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.5);
+  width: 100%;
+  max-width: 1280px;
+  padding: calc(var(--gap) * 1.5);
+}
+
+/* ---------- Grids ---------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--gap);
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.5);
+}
+
+.entries-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--gap) * 1.5);
+}
+
+@media (max-width: 1100px) {
+  .entries-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: min(280px, 85vw);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    /* Visible at once when opening (so focus() works); delayed only when closing. */
+    transition:
+      transform 0.2s ease,
+      visibility 0s;
+    box-shadow: 0 0 40px color-mix(in srgb, var(--bg) 80%, transparent);
+  }
+
+  .sidebar-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 65%, transparent);
+  }
+
+  .menu-toggle,
+  .sidebar-close {
+    display: inline-flex;
+  }
+
+  .sidebar-close {
+    margin-left: auto;
+  }
+
+  .topbar {
+    padding: 12px var(--gap);
+  }
+
+  .topbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .content {
+    padding: var(--gap);
+    gap: var(--gap);
+  }
+}

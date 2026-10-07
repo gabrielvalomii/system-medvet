@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Adicionar gastos — Finanças</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <script type="module" src="/js/gastos.js"></script>
+  </head>
+  <body data-auth="pending">
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+    <div class="app">
+      <aside class="sidebar" id="sidebar" aria-label="Navegação">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 3v18h18" />
+              <path d="m7 15 4-4 3 3 6-6" />
+            </svg>
+          </span>
+          Finanças
+          <button
+            class="btn btn-secondary btn-icon sidebar-close"
+            id="sidebar-close"
+            type="button"
+            aria-controls="sidebar"
+            aria-label="Fechar menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <nav aria-label="Menu principal">
+          <ul class="nav-list">
+            <li>
+              <a class="nav-link" href="/dashboard.html" data-keep-month>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="7" height="9" rx="1" />
+                  <rect x="14" y="3" width="7" height="5" rx="1" />
+                  <rect x="14" y="12" width="7" height="9" rx="1" />
+                  <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="/gastos.html" aria-current="page" data-keep-month>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8 12h8" />
+                </svg>
+                Adicionar gastos
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="/rendimentos.html" data-keep-month>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8 12h8M12 8v8" />
+                </svg>
+                Adicionar rendimentos
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <button class="nav-link logout" id="logout-button" type="button">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <path d="m16 17 5-5-5-5" />
+            <path d="M21 12H9" />
+          </svg>
+          Sair
+        </button>
+      </aside>
+      <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+      <div class="app-main">
+        <header class="topbar">
+          <button
+            class="btn btn-secondary btn-icon menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-controls="sidebar"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h1>Adicionar gastos</h1>
+          <div class="topbar-actions">
+            <div class="month-picker" role="group" aria-label="Período">
+              <button
+                class="btn btn-ghost btn-icon"
+                id="month-prev"
+                type="button"
+                aria-label="Mês anterior"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <label class="visually-hidden" for="month-input">Mês</label>
+              <input class="input" id="month-input" type="month" min="2000-01" />
+              <button
+                class="btn btn-ghost btn-icon"
+                id="month-next"
+                type="button"
+                aria-label="Próximo mês"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+            <div class="user-chip">
+              <span class="avatar" id="user-avatar" aria-hidden="true"></span>
+              <span id="user-name"></span>
+            </div>
+          </div>
+        </header>
+
+        <main class="content" id="main" tabindex="-1">
+          <div class="entries-grid">
+            <section class="panel" id="form-panel" aria-labelledby="form-title">
+              <div class="panel-header">
+                <h2 id="form-title">Novo gasto</h2>
+                <span class="edit-badge" id="edit-badge" hidden>Editando</span>
+              </div>
+              <div id="categories-status"></div>
+              <form class="entry-form" id="entry-form" novalidate>
+                <div class="field">
+                  <label for="category">Categoria</label>
+                  <select
+                    class="input"
+                    id="category"
+                    name="category"
+                    required
+                    aria-describedby="category-error"
+                  ></select>
+                  <p class="field-error" id="category-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="amount">Valor (R$)</label>
+                  <input
+                    class="input"
+                    id="amount"
+                    name="amount"
+                    type="text"
+                    inputmode="decimal"
+                    autocomplete="off"
+                    placeholder="0,00"
+                    required
+                    aria-describedby="amount-hint amount-error"
+                  />
+                  <p class="visually-hidden" id="amount-hint">
+                    Use vírgula para os centavos, por exemplo 1.234,56.
+                  </p>
+                  <p class="field-error" id="amount-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="date">Data</label>
+                  <input
+                    class="input"
+                    id="date"
+                    name="date"
+                    type="date"
+                    required
+                    aria-describedby="date-error"
+                  />
+                  <p class="field-error" id="date-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="description"
+                    >Descrição <span class="optional">(opcional)</span></label
+                  >
+                  <input
+                    class="input"
+                    id="description"
+                    name="description"
+                    type="text"
+                    maxlength="255"
+                    autocomplete="off"
+                    placeholder="Ex.: almoço com a equipe"
+                    aria-describedby="description-error"
+                  />
+                  <p class="field-error" id="description-error" aria-live="polite"></p>
+                </div>
+                <p class="form-error" id="form-error" role="alert"></p>
+                <div class="form-actions">
+                  <button class="btn btn-primary" id="submit-button" type="submit">
+                    Adicionar gasto
+                  </button>
+                  <button class="btn btn-secondary" id="cancel-edit" type="button" hidden>
+                    Cancelar
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="list-title">
+              <div class="panel-header">
+                <h2 id="list-title">Gastos de <span id="period-label"></span></h2>
+                <span class="muted" id="entries-count" aria-live="polite"></span>
+              </div>
+              <div id="entries-state"></div>
+              <div class="table-wrap">
+                <table class="data-table" id="entries-table" hidden>
+                  <caption class="visually-hidden">
+                    Gastos do mês selecionado
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Data</th>
+                      <th scope="col">Categoria</th>
+                      <th scope="col">Descrição</th>
+                      <th scope="col" class="num">Valor</th>
+                      <th scope="col" class="actions">
+                        <span class="visually-hidden">Ações</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="entries-body"></tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" data-label="Total">Total do mês</td>
+                      <td class="num" id="entries-total" data-label="Total"></td>
+                      <td class="actions"></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

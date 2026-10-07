@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "back-django",
+      "runtimeExecutable": "back/venv/Scripts/python.exe",
+      "runtimeArgs": ["back/manage.py", "runserver", "127.0.0.1:8000", "--noreload"],
+      "port": 8000
+    },
+    {
+      "name": "front-express",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["front/server.js"],
+      "port": 3000
+    }
+  ]
+}
